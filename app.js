@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-# host para vagrant
+// host para vagrant
 mongoose.connect('mongodb://192.168.33.21/employee')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
