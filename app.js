@@ -7,8 +7,11 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-// host para vagrant
-mongoose.connect('mongodb://192.168.33.21/employee')
+// Igual podriamos detectar automáticamente si estamos en cloud o no
+// var ip_bbdd = '192.168.33.21';
+var ip_bbdd = '10.0.2.16';
+
+mongoose.connect('mongodb://${ip_bbdd}/employee')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
