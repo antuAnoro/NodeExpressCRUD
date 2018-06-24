@@ -11,7 +11,7 @@ mongoose.Promise = global.Promise;
 // var ip_bbdd = '192.168.33.21';
 var ip_bbdd = '10.0.2.16';
 
-mongoose.connect('mongodb://${ip_bbdd}/employee')
+mongoose.connect(`mongodb://${ip_bbdd}/employee`)
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
