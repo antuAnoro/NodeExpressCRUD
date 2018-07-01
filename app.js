@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // Añadimos como variable de entorno la IP de la BBDD
+console.log(process.env.IP_BBDD);
 var ip_bbdd = process.env.IP_BBDD || '127.0.0.1';
 
 mongoose.connect(`mongodb://${ip_bbdd}/employee`)
