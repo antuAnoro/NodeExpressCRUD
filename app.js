@@ -7,9 +7,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-// Igual podriamos detectar automáticamente si estamos en cloud o no
-// var ip_bbdd = '192.168.33.21';
-var ip_bbdd = '10.0.2.16';
+// Añadimos como variable de entorno la IP de la BBDD
+var ip_bbdd = process.env.IP_BBDD || '127.0.0.1';
 
 mongoose.connect(`mongodb://${ip_bbdd}/employee`)
   .then(() =>  console.log('connection succesful'))
