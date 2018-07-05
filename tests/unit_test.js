@@ -10,7 +10,7 @@ describe('checkEmployeeController()', function () {
     var isEmployeeControllerPresent = employeeController.isControllerPresent();
 
     // 3. ASSERT
-    expect(isEmployeeControllerPresent).to.be.equal(true);
+    expect(isEmployeeControllerPresent).to.be.equal(false);
 
   });
 });
