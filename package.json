@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "test": "mocha tests/unit_test.js",
+    "test": "mocha tests/**",
     "start": "node ./bin/www"
   },
   "dependencies": {
