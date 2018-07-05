@@ -2,13 +2,9 @@
   "name": "node-crud",
   "version": "0.0.1",
   "private": true,
-  "directories": {
-    "test": "tests",
-	"start": "bin"
-  },
   "scripts": {
-    "test": "mocha unit_test.js",
-    "start": "node www"
+    "test": "mocha tests/unit_test.js",
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
