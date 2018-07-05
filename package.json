@@ -1,8 +1,9 @@
 {
   "name": "node-crud",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
+    "test": "mocha tests/**",
     "start": "node ./bin/www"
   },
   "dependencies": {
@@ -14,5 +15,9 @@
     "mongoose": "^4.8.4",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"	
   }
 }
