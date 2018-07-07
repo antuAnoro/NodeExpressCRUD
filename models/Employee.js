@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var EmployeeSchema = new mongoose.Schema({
-  name: { type: String, unique: true }
+  name: { type: String, unique: true },
   address: String,
   position: String,
   salary: Number,
