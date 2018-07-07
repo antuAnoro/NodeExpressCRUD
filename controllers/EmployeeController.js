@@ -3,11 +3,6 @@ var Employee = require("../models/Employee");
 
 var employeeController = {};
 
-// Agregado por mi para una prueba unitaria sencilla
-employeeController.isControllerPresent = function(req, res) {
-  return true;
-};
-
 // Show list of employees
 employeeController.list = function(req, res) {
   Employee.find({}).exec(function (err, employees) {
