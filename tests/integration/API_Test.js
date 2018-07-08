@@ -83,6 +83,8 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 		});
 		
 		it('obtenemos un unico empleado, insertado anteriormente', (done) => {
+			console.log("Empleado guardado : "+ employee1.id);
+			
 			chai.request(server)
 			.get('/employees/' + employee1.id)
 			.end((err, res) => {
@@ -101,6 +103,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	// Probamos PUT
 	describe('Prueba /PUT', () => {
 		it('actualizamos el puesto y salario del empleado, debe cambiar su valor', (done) => {
+			console.log("Empleado guardado : "+ employee1.id);
 			chai.request(server)
 			.put('/employees/' + employee1.id)
 			.send({	name: "Antonio Manteca", address: "Calle Mortadelo 4", position  : "DevOps Manager", salary: "50000"})
@@ -118,6 +121,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	// Por ultimo probamos a borrar un unico empleado
 	describe('Prueba /DELETE', () => {
 		it('borramos el empleado, debe ir OK', (done) => {
+			console.log("Empleado guardado : "+ employee1.id);
 			chai.request(server)
 			.delete('/employees/' + employee1.id)			
 			.end((err, res) => {
