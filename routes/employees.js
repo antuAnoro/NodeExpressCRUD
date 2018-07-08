@@ -12,6 +12,11 @@ router.get('/:id', function(req, res) {
   employee.get(req, res);
 });
 
+// Find by name
+router.get('/find/:name', function(req, res) {
+  employee.findByName(req, res);
+});
+
 // Save employee
 router.post('/', function(req, res) {
   employee.save(req, res);
