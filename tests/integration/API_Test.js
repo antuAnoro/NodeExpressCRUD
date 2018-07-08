@@ -89,7 +89,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.should.be.a('object');
-				res.body.should.have.property('name').eql(nombreEmpleado);
+				res.body.should.have.property('name').eql("Antonio Manteca");
 				done();
 			});
 		});
@@ -136,8 +136,8 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
 					res.body.should.have.property('message').eql('Empleado actualizado correctamente');
-					res.body.should.have.property('position').eql("DevOps Manager");
-					res.body.should.have.property('salary').eql("50000");
+					res.body.employee.should.have.property('position').eql("DevOps Manager");
+					res.body.employee.should.have.property('salary').eql("50000");
 					done();
 				});				
 			});
