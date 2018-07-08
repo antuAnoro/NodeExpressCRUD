@@ -4,36 +4,26 @@ var employee = require("../controllers/EmployeeController.js");
 
 // Get all employees
 router.get('/', function(req, res) {
-  employee.list(req, res);
+  employee.getAll(req, res);
 });
 
 // Get single employee by id
-router.get('/show/:id', function(req, res) {
-  employee.show(req, res);
-});
-
-// Create employee
-router.get('/create', function(req, res) {
-  employee.create(req, res);
+router.get('/:id', function(req, res) {
+  employee.get(req, res);
 });
 
 // Save employee
-router.post('/save', function(req, res) {
+router.post('/', function(req, res) {
   employee.save(req, res);
 });
 
 // Edit employee
-router.get('/edit/:id', function(req, res) {
+router.put('/:id', function(req, res) {
   employee.edit(req, res);
 });
 
-// Edit update
-router.post('/update/:id', function(req, res) {
-  employee.update(req, res);
-});
-
-// Edit update
-router.post('/delete/:id', function(req, res, next) {
+// Delete employee
+router.delete('/:id', function(req, res) {
   employee.delete(req, res);
 });
 

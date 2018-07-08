@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-var employee = require('../../models/Employee');
+var employee = require('../../../models/Employee');
 
 describe('Pruebas contra BBDD utilizando el modelo', function () {
 	

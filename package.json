@@ -1,9 +1,10 @@
 {
-  "name": "node-crud",
+  "name": "node-rest-crud",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "test": "mocha tests/**",
+    "unit_test": "mocha tests/unit/**",
+    "integration_test": "mocha tests/integration/**",
     "start": "node ./bin/www"
   },
   "dependencies": {
