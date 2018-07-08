@@ -24,8 +24,6 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 			});
 	});
 	
-	var idEmpleado; // Lo defino fuera para que sea visible en las otras pruebas
-	
 	// Probamos POST
 	describe('Prueba /POST', () => {
 		it('insertamos un empleado válido, debería ir OK', (done) => {
@@ -83,20 +81,40 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 			});
 		});
 		
-		it('obtenemos un unico empleado, insertado anteriormente', (done) => {
-			console.log("Empleado guardado : "+ idEmpleado);
+		it('buscamos por nombre un empleado insertado anteriormente', (done) => {
+			var nombreEmpleado = "Antonio%20Manteca";
 			
 			chai.request(server)
-			.get('/employees/' + idEmpleado)
+			.get('/employees/find/' + nombreEmpleado)
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.should.be.a('object');
-				res.body.should.have.property('_id').eql(employee1.id);
-				res.body.should.have.property('name');
-                res.body.should.have.property('address');
-                res.body.should.have.property('position');
-                res.body.should.have.property('salary');
+				res.body.should.have.property('name').eql(nombreEmpleado);
 				done();
+			});
+		});
+		
+		it('obtenemos un unico empleado, insertado anteriormente', (done) => {
+			var nombreEmpleado = "Antonio%20Manteca";
+			
+			chai.request(server)
+			.get('/employees/find/' + nombreEmpleado)
+			.end((err, res) => {
+				var idEmpleado = res.body._id;
+				console.log("ID empleado " + idEmpleado);
+				
+				chai.request(server)
+				.get('/employees/' + idEmpleado)
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('_id').eql(idEmpleado);
+					res.body.should.have.property('name');
+					res.body.should.have.property('address');
+					res.body.should.have.property('position');
+					res.body.should.have.property('salary');
+					done();
+				});
 			});
 		});
 	});
@@ -104,17 +122,24 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	// Probamos PUT
 	describe('Prueba /PUT', () => {
 		it('actualizamos el puesto y salario del empleado, debe cambiar su valor', (done) => {
-			console.log("Empleado guardado : "+ idEmpleado);
+			var nombreEmpleado = "Antonio%20Manteca";
+			
 			chai.request(server)
-			.put('/employees/' + idEmpleado)
-			.send({	name: "Antonio Manteca", address: "Calle Mortadelo 4", position  : "DevOps Manager", salary: "50000"})
+			.get('/employees/find/' + nombreEmpleado)
 			.end((err, res) => {
-				res.should.have.status(200);
-				res.body.should.be.a('object');
-				res.body.should.have.property('message').eql('Empleado actualizado correctamente');
-				res.body.should.have.property('position').eql("DevOps Manager");
-				res.body.should.have.property('salary').eql("50000");
-				done();
+				var idEmpleado = res.body._id;
+				
+				chai.request(server)
+				.put('/employees/' + idEmpleado)
+				.send({	name: "Antonio Manteca", address: "Calle Mortadelo 4", position  : "DevOps Manager", salary: "50000"})
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('message').eql('Empleado actualizado correctamente');
+					res.body.should.have.property('position').eql("DevOps Manager");
+					res.body.should.have.property('salary').eql("50000");
+					done();
+				});				
 			});
 		});
 	});
@@ -122,14 +147,21 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	// Por ultimo probamos a borrar un unico empleado
 	describe('Prueba /DELETE', () => {
 		it('borramos el empleado, debe ir OK', (done) => {
-			console.log("Empleado guardado : "+ idEmpleado);
+			var nombreEmpleado = "Antonio%20Manteca";
+			
 			chai.request(server)
-			.delete('/employees/' + idEmpleado)			
+			.get('/employees/find/' + nombreEmpleado)
 			.end((err, res) => {
-				res.should.have.status(200);
-				res.body.should.be.a('object');
-				res.body.should.have.property('message').eql('Empleado borrado correctamente');
-				done();
+				var idEmpleado = res.body._id;
+				
+				chai.request(server)
+				.delete('/employees/' + idEmpleado)			
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('message').eql('Empleado borrado correctamente');
+					done();
+				});
 			});
 		});
 	});

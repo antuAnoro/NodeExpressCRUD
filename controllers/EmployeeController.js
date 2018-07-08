@@ -29,6 +29,19 @@ employeeController.get = function(req, res) {
   });
 };
 
+// Find by name
+employeeController.findByName = function(req, res) {
+  Employee.findOne({name: req.params.name}).exec(function (err, employee) {
+    if (err) {
+      console.log("Error:", err);
+	  res.send(err);
+    }
+    else {
+      res.json(employee);
+    }
+  });
+};
+
 // Create new employee
 employeeController.save = function(req, res) {
   var employee = new Employee(req.body);
