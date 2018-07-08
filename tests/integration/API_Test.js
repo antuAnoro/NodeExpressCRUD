@@ -24,7 +24,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 			});
 	});
 	
-	var employee1; // Lo defino fuera para que sea visible en las otras pruebas
+	var idEmpleado; // Lo defino fuera para que sea visible en las otras pruebas
 	
 	// Probamos POST
 	describe('Prueba /POST', () => {
@@ -43,6 +43,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
 					res.body.should.have.property('message').eql('Empleado creado correctamente');
+					idEmpleado = res.body._id;
 					done();
 				});
 		});
@@ -63,7 +64,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 					res.body.should.be.a('object');
 					res.body.should.have.property('errors');
 					res.body.errors.should.have.property('salary');
-					res.body.errors.pages.should.have.property('kind').eql('Number');
+					res.body.errors.salary.should.have.property('kind').eql('Number');
 					done();
 				});
 		});
@@ -83,10 +84,10 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 		});
 		
 		it('obtenemos un unico empleado, insertado anteriormente', (done) => {
-			console.log("Empleado guardado : "+ employee1.id);
+			console.log("Empleado guardado : "+ idEmpleado);
 			
 			chai.request(server)
-			.get('/employees/' + employee1.id)
+			.get('/employees/' + idEmpleado)
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.should.be.a('object');
@@ -103,9 +104,9 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	// Probamos PUT
 	describe('Prueba /PUT', () => {
 		it('actualizamos el puesto y salario del empleado, debe cambiar su valor', (done) => {
-			console.log("Empleado guardado : "+ employee1.id);
+			console.log("Empleado guardado : "+ idEmpleado);
 			chai.request(server)
-			.put('/employees/' + employee1.id)
+			.put('/employees/' + idEmpleado)
 			.send({	name: "Antonio Manteca", address: "Calle Mortadelo 4", position  : "DevOps Manager", salary: "50000"})
 			.end((err, res) => {
 				res.should.have.status(200);
@@ -121,9 +122,9 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	// Por ultimo probamos a borrar un unico empleado
 	describe('Prueba /DELETE', () => {
 		it('borramos el empleado, debe ir OK', (done) => {
-			console.log("Empleado guardado : "+ employee1.id);
+			console.log("Empleado guardado : "+ idEmpleado);
 			chai.request(server)
-			.delete('/employees/' + employee1.id)			
+			.delete('/employees/' + idEmpleado)			
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.should.be.a('object');
