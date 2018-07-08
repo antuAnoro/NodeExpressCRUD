@@ -1,20 +1,57 @@
-var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+// De momento hay que tocarlo manualmente
+process.env.INT_LOAD_BALANCER = 'pTFM-load-balancer-frontend-int-748900962.eu-west-2.elb.amazonaws.com';
 
-var employee = require('../../../models/Employee');
+var employee = require('../../models/Employee');
 
-describe('Pruebas contra BBDD utilizando el modelo', function () {
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+chai.use(chaiHttp);
+var should = chai.should();
+
+var server = process.env.INT_LOAD_BALANCER || '127.0.0.1';
+
+describe('Pruebas contra API REST del entorno integrado', function () {
 	
-	// Primero debemos conectar a la BBDD
+	// Primero debemos limpiar la BBDD
 	before(function (done) {
-		mongoose.connect(`mongodb://localhost/employee`)
-		const db = mongoose.connection;
-		db.on('error', console.error.bind(console, '    Error conectando a la BBDD'));
-		db.once('open', function() {
-		  console.log('    Conectados a la BBDD!');
-		  done();
+		it('limpiamos todos los empleados', (done) => {
+			chai.request(server)
+				.delete('/')
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('message').eql('Empleados borrados correctamente');
+					done();
+				});
 		});
 	});
+	
+	// Probamos GET
+	describe('prueba /GET', () => {
+		it('debería devolver todos los empleados', (done) => {
+			chai.request(server)
+			.get('/employee')
+			.end((err, res) => {
+				res.should.have.status(200);
+				res.body.should.be.a('array');
+				res.body.length.should.be.eql(0);
+				done();
+			});
+		});
+	});
+});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// Ahora vamos con la primera prueba, inserciones
 	describe('Comprobamos inserciones', function () {

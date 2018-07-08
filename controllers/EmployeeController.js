@@ -57,6 +57,20 @@ employeeController.edit = function(req, res) {
   });
 };
 
+// Delete all employees
+employeeController.delete = function(req, res) {
+  Employee.remove({}, function(err, result) {
+  if(err) {
+      console.log("Error:", err);
+      res.send(err);
+    }
+    else {
+      console.log("Empleados borrados correctamente.");
+      res.json({message: "Empleados borrados correctamente", result});
+    }
+  });
+};
+
 // Delete an employee
 employeeController.delete = function(req, res) {
   Employee.remove({_id: req.params.id}, function(err, result) {

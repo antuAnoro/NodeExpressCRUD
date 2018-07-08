@@ -22,6 +22,11 @@ router.put('/:id', function(req, res) {
   employee.edit(req, res);
 });
 
+// Delete all employees
+router.delete('/', function(req, res) {
+  employee.deleteAll(req, res);
+});
+
 // Delete employee
 router.delete('/:id', function(req, res) {
   employee.delete(req, res);
