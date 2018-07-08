@@ -58,7 +58,7 @@ employeeController.edit = function(req, res) {
 };
 
 // Delete all employees
-employeeController.delete = function(req, res) {
+employeeController.deleteAll = function(req, res) {
   Employee.remove({}, function(err, result) {
   if(err) {
       console.log("Error:", err);

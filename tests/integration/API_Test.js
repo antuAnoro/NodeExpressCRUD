@@ -1,5 +1,5 @@
 // De momento hay que tocarlo manualmente
-process.env.INT_LOAD_BALANCER = 'pTFM-load-balancer-frontend-int-748900962.eu-west-2.elb.amazonaws.com';
+process.env.INT_LOAD_BALANCER = 'TFM-load-balancer-frontend-int-748900962.eu-west-2.elb.amazonaws.com';
 
 var employee = require('../../models/Employee');
 
@@ -16,7 +16,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	before(function (done) {
 		it('limpiamos todos los empleados', (done) => {
 			chai.request(server)
-				.delete('/')
+				.delete('/employees')
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
@@ -30,7 +30,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	describe('prueba /GET', () => {
 		it('debería devolver todos los empleados', (done) => {
 			chai.request(server)
-			.get('/employee')
+			.get('/employees')
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.should.be.a('array');
