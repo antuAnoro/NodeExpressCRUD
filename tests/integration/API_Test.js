@@ -137,7 +137,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 					res.body.should.be.a('object');
 					res.body.should.have.property('message').eql('Empleado actualizado correctamente');
 					res.body.employee.should.have.property('position').eql("DevOps Manager");
-					res.body.employee.should.have.property('salary').eql("50000");
+					res.body.employee.should.have.property('salary').eql(50000);
 					done();
 				});				
 			});
