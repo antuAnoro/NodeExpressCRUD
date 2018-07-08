@@ -55,7 +55,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 			
 			chai.request(server)
 				.post('/employees')
-				.send(employee1)
+				.send(employee2)
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
