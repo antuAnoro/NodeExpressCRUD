@@ -5,7 +5,7 @@ var chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var should = chai.should();
 
-var server = process.env.INT_LOAD_BALANCER || '127.0.0.1';
+var server = process.env.INT_LB_DNS || '127.0.0.1';
 
 describe('Pruebas contra API REST del entorno integrado', function () {
 	
