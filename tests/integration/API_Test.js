@@ -7,6 +7,8 @@ var should = chai.should();
 
 var server = process.env.INT_LB_DNS || '127.0.0.1';
 
+console.log('Accediendo a aplicación por ' + server);
+
 describe('Pruebas contra API REST del entorno integrado', function () {
 	
 	// Primero debemos limpiar la BBDD
