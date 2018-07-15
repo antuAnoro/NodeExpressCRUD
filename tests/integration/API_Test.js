@@ -1,6 +1,3 @@
-// De momento hay que tocarlo manualmente
-process.env.INT_LOAD_BALANCER = 'TFM-load-balancer-frontend-int-748900962.eu-west-2.elb.amazonaws.com';
-
 var employee = require('../../models/Employee');
 
 var chai = require('chai');
@@ -26,7 +23,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	
 	// Probamos POST
 	describe('Prueba /POST', () => {
-		it('insertamos un empleado válido, debería ir OK', (done) => {
+		it('insertamos un empleado vÃ¡lido, deberÃ­a ir OK', (done) => {
 			employee1 = {
 				name      : "Antonio Manteca",
 				address   : "Calle Mortadelo 4",
@@ -46,7 +43,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 				});
 		});
 		
-		it('insertamos un empleado con salario inválido, debería fallar', (done) => {
+		it('insertamos un empleado con salario invÃ¡lido, deberÃ­a fallar', (done) => {
 			var employee2 = {
 				name      : "Francisco Alegre",
 				address   : "Calle Maravillas 43",
