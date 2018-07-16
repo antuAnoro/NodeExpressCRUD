@@ -78,9 +78,7 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 		it('buscamos un empleado existente, debería ir OK', function (done) {
 
 			// Buscamos
-			// employee.findOne({name: 'Antonio Manteca'}, (err, name) => {
-			// TEMP Provocamos error
-			employee.findOne({name: 'Antonio Mantecas'}, (err, name) => {
+			employee.findOne({name: 'Antonio Manteca'}, (err, name) => {
 				if(err) {
 					throw err;
 				}
