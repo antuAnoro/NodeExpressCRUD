@@ -19,7 +19,7 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 	// Ahora vamos con la primera prueba, inserciones
 	describe('Comprobamos inserciones', function () {
 		
-		it('insertamos un empleado válido, debería ir OK', function (done) {
+		it('insertamos un empleado vÃ¡lido, deberÃ­a ir OK', function (done) {
 
 			// Preparamos
 			var employee1 = new employee();
@@ -33,7 +33,7 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 		});	
 		
 
-		it('insertamos un empleado con salario inválido, debería fallar', function (done) {
+		it('insertamos un empleado con salario invÃ¡lido, deberÃ­a fallar', function (done) {
 
 			// Preparamos
 			var employee2 = new employee();
@@ -52,7 +52,7 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 			});
 		});	
 	
-		it('insertamos un empleado con un nombre ya existente, debería fallar', function (done) {
+		it('insertamos un empleado con un nombre ya existente, deberÃ­a fallar', function (done) {
 
 			// Preparamos
 			var employee3 = new employee();
@@ -72,10 +72,10 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 		});
 	});
 	
-	// Segunda prueba, búsquedas
+	// Segunda prueba, bÃºsquedas
 	describe('Comprobamos busquedas', function () {
 		
-		it('buscamos un empleado existente, debería ir OK', function (done) {
+		it('buscamos un empleado existente, deberÃ­a ir OK', function (done) {
 
 			// Buscamos
 			employee.findOne({name: 'Antonio Manteca'}, (err, name) => {
@@ -90,10 +90,12 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 		});	
 		
 
-		it('buscamos un empleado inexistente, debería fallar', function (done) {
-
+		it('buscamos un empleado inexistente, deberÃ­a fallar', function (done) {
+			
 			// Buscamos
-			employee.findOne({name: 'Pato Lucas'}, (err, name) => {
+			// employee.findOne({name: 'Antonio Manteca'}, (err, name) => {
+			// TEMP Provocamos error
+			employee.findOne({name: 'Antonio Mantecas'}, (err, name) => {
 				if(err) {
 					throw err;
 				}
@@ -107,10 +109,10 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 
 	});
 
-	// Última prueba, borrados
+	// Ãšltima prueba, borrados
 	describe('Comprobamos borrados', function () {
 		
-		it('borramos un empleado existente, debería ir OK', function (done) {
+		it('borramos un empleado existente, deberÃ­a ir OK', function (done) {
 
 			// Preparamos
 			var employee4 = employee.findOne({name: 'Antonio Manteca'}, (err, name, _id) => {
