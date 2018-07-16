@@ -18,8 +18,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.should.be.a('object');
-				//res.body.should.have.property('message').eql('Empleados borrados correctamente');
-				res.body.should.have.property('message').eql('Empleados borrados correctamentesss');
+				res.body.should.have.property('message').eql('Empleados borrados correctamente');
 				done();
 			});
 	});
