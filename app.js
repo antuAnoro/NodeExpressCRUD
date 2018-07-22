@@ -15,7 +15,6 @@ mongoose.connect(`mongodb://${ip_bbdd}/employee`)
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
-var index = require('./routes/index');
 var employees = require('./routes/employees');
 
 var app = express();
