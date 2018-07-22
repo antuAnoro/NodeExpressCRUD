@@ -32,7 +32,7 @@ router.get('/:id', function(req, res) {
  * @url /employees/find/:nombre
  */
 router.get('/find/:nombre', function(req, res) {
-  employee.findByNombre(req, res);
+  employee.findByName(req, res);
 });
 
 /**
