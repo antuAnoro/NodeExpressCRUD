@@ -29,9 +29,9 @@ router.get('/:id', function(req, res) {
  *
  * @section empleados
  * @type get
- * @url /employees/find/:name
+ * @url /employees/find/:nombre
  */
-router.get('/find/:name', function(req, res) {
+router.get('/find/:nombre', function(req, res) {
   employee.findByName(req, res);
 });
 
