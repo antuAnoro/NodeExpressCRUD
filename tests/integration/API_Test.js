@@ -102,7 +102,6 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 			.get('/employees/find/' + nombreEmpleado)
 			.end((err, res) => {
 				var idEmpleado = res.body._id;
-				console.log("ID empleado " + idEmpleado);
 				
 				chai.request(server)
 				.get('/employees/' + idEmpleado)
