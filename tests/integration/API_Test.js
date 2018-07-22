@@ -48,7 +48,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 		
 		it('insertamos un empleado con salario inválido, debería fallar', (done) => {
 			var employee2 = {
-				nif        : "87654321Z"
+				nif        : "87654321Z",
 				nombre     : "Francisco Alegre",
 				direccion  : "Calle Maravillas 43",
 				categoria  : "System Technician",
