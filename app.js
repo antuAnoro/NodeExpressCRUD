@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/docs/index.html'));
+    res.sendFile(path.join(__dirname + '/public/docs/index.html'));
 });
 
 app.use('/employees', employees);
