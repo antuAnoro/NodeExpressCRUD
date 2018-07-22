@@ -31,7 +31,7 @@ employeeController.get = function(req, res) {
 
 // Find by name
 employeeController.findByName = function(req, res) {
-  Employee.findOne({name: req.params.name}).exec(function (err, employee) {
+  Employee.findOne({nombre: req.params.nombre}).exec(function (err, employee) {
     if (err) {
       console.log("Error:", err);
 	  res.send(err);
@@ -59,7 +59,7 @@ employeeController.save = function(req, res) {
 
 // Update an employee
 employeeController.edit = function(req, res) {
-  Employee.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, address: req.body.address, position: req.body.position, salary: req.body.salary }}, { new: true }, function (err, employee) {
+  Employee.findByIdAndUpdate(req.params.id, { $set: { nif: req.body.nif, nombre: req.body.nombre, direccion: req.body.direccion, categoria: req.body.categoria, salario: req.body.salario }}, { new: true }, function (err, employee) {
     if (err) {
       console.log("Error:", err);
       res.send(err);
