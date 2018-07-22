@@ -23,10 +23,12 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 
 			// Preparamos
 			var employee1 = new employee();
-			employee1.name      = 'Antonio Manteca';
-			employee1.address   = 'Calle Mortadelo 4';
-			employee1.position  = 'System Technician';
-			employee1.salary    = '30000';
+			
+			employee1.nif        = '12345678A';
+			employee1.nombre     = 'Antonio Manteca';
+			employee1.direccion  = 'Calle Mortadelo 4';
+			employee1.categoria  = 'System Technician';
+			employee1.salario    = '30000';
 
 			// Insertamos
 			employee1.save(done);
@@ -37,10 +39,11 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 
 			// Preparamos
 			var employee2 = new employee();
-			employee2.name      = 'Francisco Alegre';
-			employee2.address   = 'Calle Maravillas 43';
-			employee2.position  = 'System Technician';
-			employee2.salary    = 'Treinta mil';
+			employee2.nif        = '87654321Z';
+			employee2.nombre     = 'Francisco Alegre';
+			employee2.direccion  = 'Calle Maravillas 43';
+			employee2.categoria  = 'System Technician';
+			employee2.salario    = 'Treinta mil';
 
 			// Insertamos
 			employee2.save(err => {
@@ -52,14 +55,15 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 			});
 		});	
 	
-		it('insertamos un empleado con un nombre ya existente, debería fallar', function (done) {
+		it('insertamos un empleado con un nif ya existente, debería fallar', function (done) {
 
 			// Preparamos
 			var employee3 = new employee();
-			employee3.name      = 'Antonio Manteca';
-			employee3.address   = 'Calle Serrano 61';
-			employee3.position  = 'Director';
-			employee3.salary    = '90000';
+			employee3.nif        = '12345678A';
+			employee3.nombre     = 'Felix Garcia';
+			employee3.direccion  = 'Calle Serrano 61';
+			employee3.categoria  = 'Director';
+			employee3.salario    = '90000';
 
 			// Insertamos
 			employee3.save(err => {
@@ -78,11 +82,11 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 		it('buscamos un empleado existente, debería ir OK', function (done) {
 
 			// Buscamos
-			employee.findOne({name: 'Antonio Manteca'}, (err, name) => {
+			employee.findOne({nombre: 'Antonio Manteca'}, (err, nombre) => {
 				if(err) {
 					throw err;
 				}
-				if(name === null) {
+				if(nombre === null) {
 					throw new Error(':( Sin datos');
 				}
 				done();
@@ -93,11 +97,11 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 		it('buscamos un empleado inexistente, debería fallar', function (done) {
 
 			// Buscamos
-			employee.findOne({name: 'Pato Lucas'}, (err, name) => {
+			employee.findOne({nombre: 'Pato Lucas'}, (err, nombre) => {
 				if(err) {
 					throw err;
 				}
-				if(name === null) {
+				if(nombre === null) {
 					return done(); 
 				} else {
 					throw new Error(':( Ha encontrado una ocurrencia');
@@ -113,12 +117,12 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 		it('borramos un empleado existente, debería ir OK', function (done) {
 
 			// Preparamos
-			var employee4 = employee.findOne({name: 'Antonio Manteca'}, (err, name, _id) => {
+			var employee4 = employee.findOne({nombre: 'Antonio Manteca'}, (err, nombre, _id) => {
 				if(err) {
 					throw err;
 				}
 				
-				if(name === null) {
+				if(nombre === null) {
 					throw new Error(':( Sin datos');
 				}
 				

@@ -27,10 +27,11 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 	describe('Prueba /POST', () => {
 		it('insertamos un empleado válido, debería ir OK', (done) => {
 			employee1 = {
-				name      : "Antonio Manteca",
-				address   : "Calle Mortadelo 4",
-				position  : "System Technician",
-				salary    : "30000"
+				nif        : "12345678A",
+				nombre     : "Antonio Manteca",
+				direccion  : "Calle Mortadelo 4",
+				categoria  : "System Technician",
+				salario    : "30000"
 			}
 			
 			chai.request(server)
@@ -47,10 +48,11 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 		
 		it('insertamos un empleado con salario inválido, debería fallar', (done) => {
 			var employee2 = {
-				name      : "Francisco Alegre",
-				address   : "Calle Maravillas 43",
-				position  : "System Technician",
-				salary    : "Treinta mil"
+				nif        : "87654321Z"
+				nombre     : "Francisco Alegre",
+				direccion  : "Calle Maravillas 43",
+				categoria  : "System Technician",
+				salario    : "Treinta mil"
 			}
 			
 			chai.request(server)
@@ -60,8 +62,8 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
 					res.body.should.have.property('errors');
-					res.body.errors.should.have.property('salary');
-					res.body.errors.salary.should.have.property('kind').eql('Number');
+					res.body.errors.should.have.property('salario');
+					res.body.errors.salario.should.have.property('kind').eql('Number');
 					done();
 				});
 		});
@@ -88,7 +90,7 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.should.be.a('object');
-				res.body.should.have.property('name').eql("Antonio Manteca");
+				res.body.should.have.property('nombre').eql("Antonio Manteca");
 				done();
 			});
 		});
@@ -108,10 +110,11 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
 					res.body.should.have.property('_id').eql(idEmpleado);
-					res.body.should.have.property('name');
-					res.body.should.have.property('address');
-					res.body.should.have.property('position');
-					res.body.should.have.property('salary');
+					res.body.should.have.property('nif');
+					res.body.should.have.property('nombre');
+					res.body.should.have.property('direccion');
+					res.body.should.have.property('categoria');
+					res.body.should.have.property('salario');
 					done();
 				});
 			});
@@ -130,13 +133,13 @@ describe('Pruebas contra API REST del entorno integrado', function () {
 				
 				chai.request(server)
 				.put('/employees/' + idEmpleado)
-				.send({	name: "Antonio Manteca", address: "Calle Mortadelo 4", position  : "DevOps Manager", salary: "50000"})
+				.send({	nif: res.body.nif, nombre: res.body.nombre, direccion: res.body.direccion, categoria  : "DevOps Manager", salario: "50000"})
 				.end((err, res) => {
 					res.should.have.status(200);
 					res.body.should.be.a('object');
 					res.body.should.have.property('message').eql('Empleado actualizado correctamente');
-					res.body.employee.should.have.property('position').eql("DevOps Manager");
-					res.body.employee.should.have.property('salary').eql(50000);
+					res.body.employee.should.have.property('categoria').eql("DevOps Manager");
+					res.body.employee.should.have.property('salario').eql(50000);
 					done();
 				});				
 			});

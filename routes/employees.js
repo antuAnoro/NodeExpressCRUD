@@ -2,37 +2,89 @@ var express = require('express');
 var router = express.Router();
 var employee = require("../controllers/EmployeeController.js");
 
-// Get all employees
+/**
+ * Devuelve todos los empleados
+ *
+ * @section empleados
+ * @type get
+ * @url /employees
+ */
 router.get('/', function(req, res) {
   employee.getAll(req, res);
 });
 
-// Get single employee by id
+/**
+ * Devuelve un empleado
+ *
+ * @section empleados
+ * @type get
+ * @url /employees/:id
+ */
 router.get('/:id', function(req, res) {
   employee.get(req, res);
 });
 
-// Find by name
+/**
+ * Encuentra un empleado por nombre
+ *
+ * @section empleados
+ * @type get
+ * @url /employees/find/:name
+ */
 router.get('/find/:name', function(req, res) {
   employee.findByName(req, res);
 });
 
-// Save employee
+/**
+ * Crea un nuevo empleado
+ *
+ * @section empleados
+ * @type post
+ * @url /employees
+ * @param {string} nif
+ * @param {string} nombre
+ * @param {string} direccion
+ * @param {string} categoria
+ * @param {string} salario
+ */
 router.post('/', function(req, res) {
   employee.save(req, res);
 });
 
-// Edit employee
+/**
+ * Edita un empleado
+ *
+ * @section empleados
+ * @type post
+ * @url /employees/:id
+ * @param {string} nif
+ * @param {string} nombre
+ * @param {string} direccion
+ * @param {string} categoria
+ * @param {string} salario
+ */
 router.put('/:id', function(req, res) {
   employee.edit(req, res);
 });
 
-// Delete all employees
+/**
+ * Borra todos los empleados
+ *
+ * @section empleados
+ * @type delete
+ * @url /employees
+ */
 router.delete('/', function(req, res) {
   employee.deleteAll(req, res);
 });
 
-// Delete employee
+/**
+ * Borra un empleado
+ *
+ * @section empleados
+ * @type delete
+ * @url /employees/:id
+ */
 router.delete('/:id', function(req, res) {
   employee.delete(req, res);
 });
