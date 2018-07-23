@@ -55,7 +55,7 @@ router.post('/', function(req, res) {
  * Edita un empleado
  *
  * @section empleados
- * @type post
+ * @type put
  * @url /employees/:id
  * @param {string} nif
  * @param {string} nombre
