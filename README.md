@@ -1,7 +1,7 @@
 # Máster en DevOps, Cloud Computing y Automatización de Producción de Software
-# TFM: Integración y entrega continua de un API REST en la nube
-# Autor: Antonio Manteca Ortega
-# Fecha: Julio 2018 
+##### **TFM:** Integración y entrega continua de un API REST en la nube
+##### **Autor:** Antonio Manteca Ortega
+##### **Fecha:** Julio 2018 
 
 Nuestra aplicación consiste en un API REST de gestión de empleados, implementado sobre NodeJS, que permite realizar operaciones CRUD sobre una BBDD, implementada en MongoDB, y puede ser utilizada como servicio para otras aplicaciones, por ejemplo, un portal de administración de RRHH.
 
