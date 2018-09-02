@@ -28,7 +28,7 @@ describe('Pruebas contra BBDD utilizando el modelo', function () {
 			employee1.nombre     = 'Antonio Manteca';
 			employee1.direccion  = 'Calle Mortadelo 4';
 			employee1.categoria  = 'System Technician';
-			employee1.salario    = '30000';
+			employee1.salario    = 'Treinta mil';
 
 			// Insertamos
 			employee1.save(done);
