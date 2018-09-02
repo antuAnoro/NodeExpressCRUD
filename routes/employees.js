@@ -7,7 +7,7 @@ var employee = require("../controllers/EmployeeController.js");
  *
  * @section empleados
  * @type get
- * @url /employee
+ * @url /employees
  */
 router.get('/', function(req, res) {
   employee.getAll(req, res);
